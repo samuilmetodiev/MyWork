@@ -16,10 +16,6 @@ public class TestUtil {
     public String appURL, browser;
 
 
-
-
-
-
     private void readConfig(String confFile){
         try{
             FileInputStream fileInputStream = new FileInputStream(confFile);
@@ -55,14 +51,15 @@ public class TestUtil {
 
 
     @BeforeMethod
-    public void setupDriveAndOpenTestAddress(){
+    public void setupDriverAndOpenTestAddress(){
         readConfig("src/test/resources/config.properties");
-        driver.get(appURL);
         setupWebDriver();
+        driver.get(appURL);
     }
 
     @AfterMethod
     public void tearDown(){
+
         driver.quit();
     }
 }

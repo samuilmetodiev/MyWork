@@ -10,7 +10,8 @@ import org.testng.annotations.Test;
 public class ProductTest extends TestUtil {
     private final static String PRODUCT_ID = "add-to-cart-sauce-labs-";
 
-    @Test(dataProvider = "items ist")
+
+    @Test(dataProvider = "items list")
     public void addItemIntoCart(String itemName){
         WebElement userNameInput = driver.findElement(By.id("user-name"));
         userNameInput.click();
@@ -37,7 +38,7 @@ public class ProductTest extends TestUtil {
     public Object[][] getItems(){
         return new Object[][]{
                 {"bike-light"},
-                {"bolt-t-shirt"},
+                {"bolt-t-shirt"}
         };
     }
 
