@@ -9,11 +9,28 @@ import org.testng.annotations.BeforeMethod;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 public class TestUtil {
     public WebDriver driver;
     public String appURL, browser;
+    public int implicitWait;
+
+
+    @BeforeMethod
+    public void setupDriverAndOpenTestAddress(){
+        readConfig("src/test/resources/config.properties");
+        setupWebDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
+        driver.get(appURL);
+    }
+
+    @AfterMethod
+    public void tearDown(){
+
+        driver.quit();
+    }
 
 
     private void readConfig(String confFile){
@@ -23,6 +40,7 @@ public class TestUtil {
             properties.load(fileInputStream);
             appURL= properties.getProperty("testURL");
             browser = properties.getProperty("browser");
+            implicitWait = Integer.parseInt(properties.getProperty("implicitWait"));
         }catch (IOException e){
             System.out.println(e);
         }
@@ -50,16 +68,5 @@ public class TestUtil {
     }
 
 
-    @BeforeMethod
-    public void setupDriverAndOpenTestAddress(){
-        readConfig("src/test/resources/config.properties");
-        setupWebDriver();
-        driver.get(appURL);
-    }
 
-    @AfterMethod
-    public void tearDown(){
-
-        driver.quit();
-    }
 }

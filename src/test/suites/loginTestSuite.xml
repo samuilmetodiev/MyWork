@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "http://testing.org/testng-1.0.dtd">
+
+<suite thread-count="2" verbose="1" name="QAAutomation23"
+       annotations="JDK" parallel="tests">
+
+    <test name="LoginSuitePOM">
+        <classes>
+            <class name="com.saucedemo.FirstSeleniumTest"/>
+        </classes>
+    </test>
+    <test name="ProductSuite">
+        <classes>
+            <class name="testPOM.LoginTest"/>
+        </classes>
+    </test>
+</suite>
+
+
+
+
+
+
+
+
+
+
+
+
